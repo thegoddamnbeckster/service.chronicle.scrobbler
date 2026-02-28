@@ -27,6 +27,15 @@ class ChronicleClient:
         self._base_url = ADDON.getSetting('chronicle_url').rstrip('/')
         self._api_key  = ADDON.getSetting('api_key')
 
+    def refresh_settings(self):
+        """Re-read URL and API key from addon settings.
+
+        Call this after a device-auth flow completes so the client picks up
+        the newly saved API key without needing to be reconstructed.
+        """
+        self._base_url = ADDON.getSetting('chronicle_url').rstrip('/')
+        self._api_key  = ADDON.getSetting('api_key')
+
     # ── public ──────────────────────────────────────────────────────────────────
 
     def scrobble(self, payload: dict) -> bool:
@@ -68,6 +77,48 @@ class ChronicleClient:
         except Exception as exc:
             log.error('Scrobble failed: {0}'.format(exc))
             return False
+
+    def get_lists(self) -> list:
+        """GET /api/v1/lists — return all lists for the authenticated user.
+
+        Returns a list of list-summary dicts (id, name, isOrdered, itemCount,
+        description) or an empty list on error.
+        """
+        if not self._base_url or not self._api_key:
+            log.warning('Chronicle URL or API key not configured — get_lists skipped')
+            return []
+
+        url = '{0}/api/v1/lists'.format(self._base_url)
+        req = self._build_request(url)
+
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                body = json.loads(resp.read().decode('utf-8'))
+                return body.get('data', [])
+        except Exception as exc:
+            log.error('get_lists failed: {0}'.format(exc))
+            return []
+
+    def get_list(self, list_id: int) -> dict:
+        """GET /api/v1/lists/{id} — return a single list with all its items.
+
+        Returns the data dict (id, name, isOrdered, items[]) or an empty dict
+        on error.
+        """
+        if not self._base_url or not self._api_key:
+            log.warning('Chronicle URL or API key not configured — get_list skipped')
+            return {}
+
+        url = '{0}/api/v1/lists/{1}'.format(self._base_url, list_id)
+        req = self._build_request(url)
+
+        try:
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                body = json.loads(resp.read().decode('utf-8'))
+                return body.get('data', {})
+        except Exception as exc:
+            log.error('get_list({0}) failed: {1}'.format(list_id, exc))
+            return {}
 
     def test_connection(self):
         """GET /api/health — verify connectivity and API key.

@@ -134,3 +134,71 @@ msgstr ""
 msgctxt "#32044"
 msgid "Failed to reset [B]{0}[/B]. Check the Kodi log for details."
 msgstr ""
+
+# ── List / playlist sync ───────────────────────────────────────────────────────
+
+msgctxt "#32050"
+msgid "Sync Lists to Kodi"
+msgstr ""
+
+msgctxt "#32051"
+msgid "Fetching lists from Chronicle…"
+msgstr ""
+
+msgctxt "#32052"
+msgid "Syncing [B]{0}[/B]…"
+msgstr ""
+
+msgctxt "#32053"
+msgid "Sync failed:"
+msgstr ""
+
+msgctxt "#32054"
+msgid "No lists found on Chronicle."
+msgstr ""
+
+msgctxt "#32055"
+msgid "Done! {0} playlists written, {1} failed."
+msgstr ""
+
+# ── Device / QR auth ──────────────────────────────────────────────────────────
+
+msgctxt "#32060"
+msgid "Connect to Chronicle"
+msgstr ""
+
+msgctxt "#32061"
+msgid "Connect to Chronicle"
+msgstr ""
+
+msgctxt "#32062"
+msgid "Connecting to Chronicle…"
+msgstr ""
+
+msgctxt "#32063"
+msgid "Scan the QR code with your phone"
+msgstr ""
+
+msgctxt "#32064"
+msgid "Waiting for approval…"
+msgstr ""
+
+msgctxt "#32065"
+msgid "Could not contact the Chronicle server."
+msgstr ""
+
+msgctxt "#32066"
+msgid "Connected to Chronicle!"
+msgstr ""
+
+msgctxt "#32067"
+msgid "Authorisation cancelled or expired."
+msgstr ""
+
+msgctxt "#32068"
+msgid "Your code"
+msgstr ""
+
+msgctxt "#32069"
+msgid "Cancel"
+msgstr ""
