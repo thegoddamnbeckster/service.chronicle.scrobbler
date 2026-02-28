@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="service.chronicle.scrobbler"
+       name="Chronicle Scrobbler"
+       version="1.0.0"
+       provider-name="Michael Beck">
+
+  <requires>
+    <import addon="xbmc.python"  version="3.0.0"/>
+    <import addon="xbmc.gui"     version="5.14.0"/>
+  </requires>
+
+  <!-- Background service — starts automatically at login -->
+  <extension point="xbmc.service" library="service.py" start="login"/>
+
+  <!-- Clickable script — shown when user opens the addon -->
+  <extension point="xbmc.python.script" library="default.py"/>
+
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <license>MIT</license>
+    <source>https://github.com/thegoddamnbeckster/service.chronicle.scrobbler</source>
+    <summary lang="en_GB">Chronicle Scrobbler</summary>
+    <description lang="en_GB">
+      Scrobbles your Kodi playback to your self-hosted Chronicle server.
+      Tracks movies, TV shows and music with full progress metadata.
+      Supports resetting Kodi watch progress for a fresh rewatch while
+      keeping your full history safe in Chronicle.
+    </description>
+    <news>
+      v1.0.0 - Initial release
+    </news>
+  </extension>
+
+</addon>
